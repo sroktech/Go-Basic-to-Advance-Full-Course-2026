@@ -6,6 +6,8 @@
 .env.*
 
 # Build artifacts
+# Binaries
+main
 *.exe
 *.exe~
 *.dll
