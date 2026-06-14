@@ -1,0 +1,26 @@
+# Claude
+.claude/
+
+# Environment variables
+.env
+.env.*
+
+# Build artifacts
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Go test & coverage files
+*.test
+*.out
+coverage.out
+
+# IDE settings
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
