@@ -151,7 +151,7 @@ func main() {
 	// ─── Min / Max ────────────────────────────────────────────────────────────
 
 	fmt.Println("=== Min / Max ===")
-	fmt.Println("Min(3, 7):", Min(3, 7))           // int — inferred
+	fmt.Println("Min(3, 7):", Min(3, 7))             // int — inferred
 	fmt.Println("Min(3.14, 2.71):", Min(3.14, 2.71)) // float64 — inferred
 	fmt.Println("Min(\"apple\", \"banana\"):", Min("apple", "banana"))
 	fmt.Println("Max(10, 20):", Max(10, 20))
@@ -167,8 +167,8 @@ func main() {
 	// ─── Contains ─────────────────────────────────────────────────────────────
 
 	fmt.Println("\n=== Contains ===")
-	fmt.Println("Contains([1,2,3], 2):", Contains([]int{1, 2, 3}, 2))          // true
-	fmt.Println("Contains([1,2,3], 9):", Contains([]int{1, 2, 3}, 9))          // false
+	fmt.Println("Contains([1,2,3], 2):", Contains([]int{1, 2, 3}, 2))                 // true
+	fmt.Println("Contains([1,2,3], 9):", Contains([]int{1, 2, 3}, 9))                 // false
 	fmt.Println("Contains([\"a\",\"b\"], \"b\"):", Contains([]string{"a", "b"}, "b")) // true
 
 	// ─── Map / Filter / Reduce ────────────────────────────────────────────────

@@ -6,8 +6,9 @@
 .env.*
 
 # Build artifacts
-# Binaries
+# Binaries (go build in a package-main folder names the binary after its module)
 main
+mathtest
 *.exe
 *.exe~
 *.dll

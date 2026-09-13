@@ -135,8 +135,12 @@ func main() {
 
 	go func() {
 		fmt.Println("Server listening on http://localhost:8080")
+		// Note: log.Fatal here would be risky — it calls os.Exit, which would
+		// kill the whole program from inside a goroutine with no chance for
+		// main() to clean up. log.Printf just reports the error and lets this
+		// goroutine end; main() continues and will call server.Close() below.
 		if err := server.ListenAndServe(); err != http.ErrServerClosed {
-			log.Fatal("Server error:", err)
+			log.Printf("server error: %v", err)
 		}
 	}()
 
@@ -163,10 +167,15 @@ func main() {
 
 	// GET /tasks
 	fmt.Println("\n--- GET /tasks ---")
-	resp2, _ := client.Get("http://localhost:8080/tasks")
+	resp2, err := client.Get("http://localhost:8080/tasks")
+	if err != nil {
+		log.Fatal(err)
+	}
 	defer resp2.Body.Close()
 	var fetchedTasks []Task
-	json.NewDecoder(resp2.Body).Decode(&fetchedTasks)
+	if err := json.NewDecoder(resp2.Body).Decode(&fetchedTasks); err != nil {
+		log.Fatal(err)
+	}
 	for _, t := range fetchedTasks {
 		status := "[ ]"
 		if t.Done {
@@ -178,24 +187,35 @@ func main() {
 	// POST /tasks/create
 	fmt.Println("\n--- POST /tasks/create ---")
 	payload := `{"title": "Learn HTTP in Go", "done": false}`
-	resp3, _ := client.Post(
+	resp3, err := client.Post(
 		"http://localhost:8080/tasks/create",
 		"application/json",
 		strings.NewReader(payload),
 	)
+	if err != nil {
+		log.Fatal(err)
+	}
 	defer resp3.Body.Close()
 	var created Task
-	json.NewDecoder(resp3.Body).Decode(&created)
+	if err := json.NewDecoder(resp3.Body).Decode(&created); err != nil {
+		log.Fatal(err)
+	}
 	fmt.Printf("  Created: ID=%d, Title=%s\n", created.ID, created.Title)
 
 	// ─── Request with custom headers ──────────────────────────────────────────
 
 	fmt.Println("\n--- Custom headers ---")
-	req, _ := http.NewRequest("GET", "http://localhost:8080/health", nil)
+	req, err := http.NewRequest("GET", "http://localhost:8080/health", nil)
+	if err != nil {
+		log.Fatal(err)
+	}
 	req.Header.Set("X-Request-ID", "demo-001")
 	req.Header.Set("Accept", "application/json")
 
-	resp4, _ := client.Do(req)
+	resp4, err := client.Do(req)
+	if err != nil {
+		log.Fatal(err)
+	}
 	defer resp4.Body.Close()
 	fmt.Println("  X-Request-ID sent, status:", resp4.Status)
 

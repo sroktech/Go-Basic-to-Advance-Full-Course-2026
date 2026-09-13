@@ -36,8 +36,10 @@ The `go.mod` file tracks the module name and Go version:
 ```
 module my-project
 
-go 1.21.0
+go 1.24.0
 ```
+(`go mod init` fills in whatever Go version you have installed — the lessons in this course
+target Go 1.24+, so yours should read 1.24 or later.)
 
 ## Step 4: Write and run code
 

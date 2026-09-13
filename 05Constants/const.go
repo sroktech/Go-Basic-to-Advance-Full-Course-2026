@@ -54,7 +54,11 @@ func main() {
 	// \" — escaped double quote: lets you include " inside a double-quoted string
 	const QUOTE = "\"GO is simple!\" - A programmer!"
 
-	fmt.Printf(GREETING)
+	// Use fmt.Print here, not fmt.Printf — GREETING is plain text with no
+	// format verbs (%s, %d, ...). Passing a variable as a Printf format string
+	// is a common bug source: if the text ever contained a stray "%", Printf
+	// would try to interpret it as a directive.
+	fmt.Print(GREETING)
 	fmt.Println(QUOTE)
 
 	// \a — alert/bell: triggers a beep sound on supported terminals (may be silent in modern terminals)

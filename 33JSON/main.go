@@ -37,12 +37,12 @@ type Address struct {
 }
 
 type Person struct {
-	Name     string  `json:"name"`
-	Age      int     `json:"age"`
-	Email    string  `json:"email,omitempty"` // omit if empty string
-	Password string  `json:"-"`               // NEVER include in JSON
-	Address  Address `json:"address"`
-	Tags     []string `json:"tags,omitempty"`  // omit if nil/empty
+	Name     string   `json:"name"`
+	Age      int      `json:"age"`
+	Email    string   `json:"email,omitempty"` // omit if empty string
+	Password string   `json:"-"`               // NEVER include in JSON
+	Address  Address  `json:"address"`
+	Tags     []string `json:"tags,omitempty"` // omit if nil/empty
 }
 
 // ─── Custom JSON marshaling ───────────────────────────────────────────────────
@@ -75,7 +75,7 @@ func main() {
 		Name:     "Alice",
 		Age:      30,
 		Email:    "alice@example.com",
-		Password: "secret123",  // this will NOT appear in JSON (json:"-")
+		Password: "secret123", // this will NOT appear in JSON (json:"-")
 		Address: Address{
 			Street: "123 Main St",
 			City:   "Springfield",

@@ -159,8 +159,8 @@ func TestIsPalindrome(t *testing.T) {
 	}{
 		{"racecar", true},
 		{"hello", false},
-		{"", true},   // empty string is a palindrome
-		{"a", true},  // single char is a palindrome
+		{"", true},  // empty string is a palindrome
+		{"a", true}, // single char is a palindrome
 		{"aba", true},
 		{"abc", false},
 		{"level", true},

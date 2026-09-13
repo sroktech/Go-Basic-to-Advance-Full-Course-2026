@@ -92,6 +92,6 @@ func main() {
 	// string is an immutable sequence of bytes, typically representing UTF-8 encoded text.
 	// Strings are defined with double quotes. The zero value is an empty string "".
 	// len(s) returns the byte count, not the character count (relevant for multi-byte Unicode).
-	var name string = "Kermet the frog!"
+	var name string = "Kermit the frog!"
 	fmt.Println("My name is:", name)
 }
